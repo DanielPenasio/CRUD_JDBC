@@ -66,14 +66,6 @@ public class ControleEstoque {
                     cadastrarVenda();
                     voltarMenu();
                     break;
-                case 11://Alterar Venda
-                    alterarVenda();
-                    voltarMenu();
-                    break;
-                case 12://Remover venda
-                    removerVenda();
-                    voltarMenu();
-                    break;
             }
         } while (opcao != 20);//sair
     }
@@ -98,8 +90,6 @@ public class ControleEstoque {
         System.out.println("==== Venda ====");
         System.out.println("9 - Listar Venda");
         System.out.println("10 - Cadastrar Venda");
-        System.out.println("11 - Alterar Venda");
-        System.out.println("12 - Remover Venda");
         System.out.println("");
         System.out.println("========");
         System.out.println("20 - Sair");
@@ -336,12 +326,12 @@ public class ControleEstoque {
         //seta o produto pelo id
         produto = produtoDAO.buscaId(idProduto);
         int qtdProduto = produto.getQuantidade();
-        
+
         if (qtdProduto <= 10 && qtdProduto != 0) {
             System.out.println("Produto com menos de 10 itens em estoque. "
                     + "Realizar a compra junto ao fornecedor");
         }
-        
+
         if (qtdVenda < qtdProduto && qtdProduto != 0) {
 
             //adiciona a compra na tabela compra
@@ -359,72 +349,7 @@ public class ControleEstoque {
             System.out.println("Impossível realizar a venda. Não há produtos disponíveis!");
             System.out.println("");
         }
-        
-    }
 
-    private static void alterarVenda() {
-        Scanner s = new Scanner(System.in);
-        CompraDAO dao = new CompraDAO();
-        ProdutoDAO produtoDAO = new ProdutoDAO();
-        Compra compra = new Compra();
-        Produto produto = new Produto();
-
-        listaDeVendas();
-        System.out.println("Insira o id da venda que deseja alterar");
-        compra.setId(s.nextLong());
-        
-        listaDeClientes();
-        System.out.println("Insira o id do cliente");
-        compra.setClienteId(s.nextLong());
-
-        listaDeProdutos();
-        System.out.println("Insira o id do produto");
-        Long idProduto = s.nextLong();
-        compra.setProdutoId(idProduto);
-
-        System.out.println("Insira a quantidade");
-        int qtdVenda = s.nextInt();
-        compra.setQuantidade(qtdVenda);
-
-        //seta o produto pelo id
-        produto = produtoDAO.buscaId(idProduto);
-
-        if (qtdVenda < produto.getQuantidade() && produto.getQuantidade() != 0) {
-
-            //adiciona a compra na tabela compra
-            dao.altera(compra);
-            //altera quantidade do produto na tabela de produtos
-            produto.setQuantidade(produto.getQuantidade() - qtdVenda);
-            produto.setId(idProduto);
-            produtoDAO.alteraQtd(produto);
-
-            System.out.println("");
-            System.out.println("Compra gravada");
-            System.out.println("");
-        } else {
-            System.out.println("");
-            System.out.println("Impossível realizar a venda. Não há produtos disponíveis!");
-            System.out.println("");
-        }
-        if (produto.getQuantidade() <= 10 && produto.getQuantidade() != 0) {
-            System.out.println("Produto com menos de 10 itens em estoque. "
-                    + "Realizar a compra junto ao fornecedor");
-        }
-
-    }
-
-    private static void removerVenda() {
-        Scanner s = new Scanner(System.in);
-        CompraDAO dao = new CompraDAO();
-        Compra c1 = new Compra();
-        listaDeVendas();
-        System.out.println("Digite o id da Venda");
-        c1.setId(s.nextLong());
-        dao.remove(c1);
-
-        System.out.println("");
-        System.out.println("Venda removido");
-        System.out.println("");
     }
 
     private static void voltarMenu() {
