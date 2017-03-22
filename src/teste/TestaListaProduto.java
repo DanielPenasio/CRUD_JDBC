@@ -24,7 +24,7 @@ public class TestaListaProduto {
             System.out.println("Tipo: " + produto.getTipo());
             System.out.println("Data de Validade: " 
                     +sdf.format(produto.getDataValidade().getTime()) +"\n");
-
+            System.out.println("Quantidade: " + produto.getQuantidade());
         }
 
     }

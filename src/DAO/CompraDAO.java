@@ -27,7 +27,7 @@ public class CompraDAO {
     // =========== Métodos do CRUD =================
     //Adiciona uma compra
     public void adiciona(Compra compra) {
-        String sql = "insert into compras (clienteId, produtoId) values(?,?)";
+        String sql = "insert into compras (clienteId, produtoId, quantidade) values(?,?,?)";
         try {
             //usando RETURN_GENERATED_KEYS pra recuperar a PK das tabelas de referências
             PreparedStatement stmt = connection.prepareStatement(sql,
@@ -35,6 +35,7 @@ public class CompraDAO {
 
             stmt.setLong(1, compra.getClienteId());
             stmt.setLong(2, compra.getProdutoId());
+            stmt.setInt(3, compra.getQuantidade());
 
             stmt.execute();
             stmt.close();
@@ -57,6 +58,7 @@ public class CompraDAO {
                 compra.setId(rs.getLong("id"));
                 compra.setClienteId(rs.getLong("clienteId"));
                 compra.setProdutoId(rs.getLong("produtoId"));
+                compra.setQuantidade(rs.getInt("quantidade"));
 
                 compras.add(compra);
             }
@@ -72,7 +74,7 @@ public class CompraDAO {
 
     //Altera compra por id
     public void altera(Compra compra) {
-        String sql = "update compras set clienteId=?, produtoId=? where id=?";
+        String sql = "update compras set clienteId=?, produtoId=?, quantidade=? where id=?";
         try {
             //usando RETURN_GENERATED_KEYS pra recuperar a PK das tabelas de referências
             PreparedStatement stmt = connection.prepareStatement(sql,
@@ -80,7 +82,8 @@ public class CompraDAO {
 
             stmt.setLong(1, compra.getClienteId());
             stmt.setLong(2, compra.getProdutoId());
-            stmt.setLong(3, compra.getId());
+            stmt.setInt(3, compra.getQuantidade());
+            stmt.setLong(4, compra.getId());
 
             stmt.execute();
             stmt.close();

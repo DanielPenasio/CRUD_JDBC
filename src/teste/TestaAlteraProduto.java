@@ -17,7 +17,7 @@ public class TestaAlteraProduto {
         p1.setNome("Coca-cola");
         p1.setPreco(5.50);
         p1.setTipo("Refrigerante");
-        p1.setQuantidade(25);
+        
 
         //data de validade a ser inserida
         String dataTexto = "10/02/2018";
@@ -33,6 +33,7 @@ public class TestaAlteraProduto {
         }
         //setando a data
         p1.setDataValidade(dataValidade);
+        p1.setQuantidade(25);
         p1.setId(1L);
 
         dao.altera(p1);

@@ -13,9 +13,10 @@ public class TestaAlteraCompra {
         CompraDAO compraDAO = new CompraDAO();
         Compra compra = new Compra();
 
-        compra.setClienteId(3L);
+        compra.setClienteId(5L);
         compra.setProdutoId(3L);
-        compra.setId(1L);
+        compra.setQuantidade(8);
+        compra.setId(3L);
 
         compraDAO.altera(compra);
 

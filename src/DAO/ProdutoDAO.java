@@ -142,6 +142,20 @@ public class ProdutoDAO {
             throw new RuntimeException(e);
         }
     }
+    
+    public void alteraQtd(Produto produto){
+        String sql = "update produtos set quantidade=? where id=?";
+        try {
+            PreparedStatement stmt = connection.prepareStatement(sql);
+            stmt.setInt(1, produto.getQuantidade());
+            stmt.setLong(2, produto.getId());
+            stmt.execute();
+            stmt.close();
+            
+        }catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
 
     //Remove produto por ID
     public void remove(Produto produto) {

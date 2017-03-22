@@ -21,7 +21,8 @@ public class TestaListaCompra {
         for (Compra compra : compras){
             System.out.println("ID da compra: " + compra.getId());
             System.out.println("Cliente: " + clienteDAO.buscaId(compra.getClienteId()).getNome());
-            System.out.println("Produto: " + produtoDAO.buscaId(compra.getProdutoId()).getNome() + "\n");
+            System.out.println("Produto: " + produtoDAO.buscaId(compra.getProdutoId()).getNome());
+            System.out.println("Quantidade: " + compra.getQuantidade() + "\n");
         }
     }
 }
