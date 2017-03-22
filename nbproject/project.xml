@@ -3,7 +3,7 @@
     <type>org.netbeans.modules.java.j2seproject</type>
     <configuration>
         <data xmlns="http://www.netbeans.org/ns/j2se-project/3">
-            <name>SCS_PS_IND-06_CRUD</name>
+            <name>SCS_PS_IND-06_ESTOQUE</name>
             <source-roots>
                 <root id="src.dir"/>
             </source-roots>
